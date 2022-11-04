@@ -20,6 +20,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @Builder
+@MappedSuperclass
 
 public class Auditable implements BaseDomain{
 
