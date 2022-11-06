@@ -27,7 +27,7 @@ public class HibernateConfigurer {
 
         StandardServiceRegistry registry = null;
 
-        if (Objects.isNull(sessionFactory)){
+        if (sessionFactory==null){
             try {
             StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
             Properties properties = new Properties();

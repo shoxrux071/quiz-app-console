@@ -15,12 +15,12 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "answers", schema = "question")
+@Table(name = "answers")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @Getter
-@Builder
+
 public class Answer extends Auditable {
 
     private String body;
@@ -28,7 +28,7 @@ public class Answer extends Auditable {
     @Enumerated(EnumType.STRING)
     private AnswerStatus status;
 
-
+    @Builder(builderMethodName = "childBuilder")
     public Answer(Long id, Timestamp createdAt, Long createdBy, Timestamp updatedAt, Long updatedBy, Boolean deleted, String body, AnswerStatus status) {
         super(id, createdAt, createdBy, updatedAt, updatedBy, deleted);
         this.body = body;

@@ -16,7 +16,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@Builder
 public class TeacherUpdateVO extends GenericVO {
 
     private String name;
@@ -24,6 +23,7 @@ public class TeacherUpdateVO extends GenericVO {
     private List<SubjectVO> subjectVOList;
 
 
+    @Builder(builderMethodName = "childBuilder")
     public TeacherUpdateVO(Long id, String name, String surname, List<SubjectVO> subjectVOList) {
         super(id);
         this.name = name;

@@ -18,7 +18,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "users", schema = "auth")
+@Table(name = "users")
 @Entity
 @AllArgsConstructor
 public class AuthUser extends Auditable {

@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "teachers", schema = "auth")
+@Table(name = "teachers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -31,8 +31,7 @@ public class Teacher {
     @ManyToMany(targetEntity = Subject.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "teacher_subject",
             joinColumns =@JoinColumn(name = "teacher_id"),
-            inverseJoinColumns =@JoinColumn(name = "subject_id"),
-            schema ="subject"
+            inverseJoinColumns =@JoinColumn(name = "subject_id")
     )
     private List<Subject> subjectList;
 

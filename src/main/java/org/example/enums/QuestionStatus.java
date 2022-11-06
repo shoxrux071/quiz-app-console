@@ -14,6 +14,6 @@ import lombok.Getter;
 
 public enum QuestionStatus {
 
-    EASY, MEDUIM, HARD;
+    EASY, MEDIUM, HARD;
 
 }

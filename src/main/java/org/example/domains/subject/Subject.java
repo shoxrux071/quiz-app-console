@@ -3,6 +3,7 @@ package org.example.domains.subject;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -18,7 +19,7 @@ import java.util.Objects;
  */
 
 @Entity
-@Table(schema = "subject", name = "subjects")
+@Table(name = "subjects")
 @NoArgsConstructor
 @Getter
 @ToString
@@ -27,6 +28,7 @@ public class Subject extends Auditable {
     @Column(nullable = false, unique = true)
     private String title;
 
+    @Builder(builderMethodName = "childBuilder")
     public Subject(Long id, Timestamp createdAt, Long createdBy, Timestamp updatedAt, Long updatedBy, Boolean deleted, String title) {
         super(id, createdAt, createdBy, updatedAt, updatedBy, deleted);
         this.title = title;

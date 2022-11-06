@@ -12,11 +12,20 @@ import org.example.vo.GenericVO;
  * @since 05/11/22 00:51 (Saturday)
  * quiz-app-console/IntelliJ IDEA
  */
-@Builder
-@Getter
-@Setter
-public class VariantUpdateVO implements BaseVO {
+
+
+public class VariantUpdateVO extends GenericVO {
     private String subjectName;
+
+    @Builder(builderMethodName = "childBuilder")
+    public VariantUpdateVO(Long id, String subjectName, QuestionStatus level, Integer numberOfQuestions, Long userId) {
+        super(id);
+        this.subjectName = subjectName;
+        this.level = level;
+        this.numberOfQuestions = numberOfQuestions;
+        this.userId = userId;
+    }
+
     private QuestionStatus level;
     private Integer numberOfQuestions;
     private Long userId;

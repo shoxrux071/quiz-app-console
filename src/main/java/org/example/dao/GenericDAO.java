@@ -85,7 +85,7 @@ public class GenericDAO<T, ID> implements BaseDAO {
             sessionFactory = HibernateConfigurer.getSessionFactory();
         }
 
-        if (Objects.isNull(session) || session.isOpen()){
+        if (Objects.isNull(session) || !session.isOpen()){
             session = sessionFactory.getCurrentSession();
         }
 

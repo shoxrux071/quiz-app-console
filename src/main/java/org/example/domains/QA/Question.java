@@ -18,12 +18,12 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "questions", schema = "question")
+@Table(name = "questions")
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-@Builder
+
 
 public class Question extends Auditable {
 
@@ -43,6 +43,7 @@ public class Question extends Auditable {
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Subject subject;
 
+    @Builder(builderMethodName = "childBuilder")
     public Question(Long id, Timestamp createdAt, Long createdBy, Timestamp updatedAt, Long updatedBy, Boolean deleted, String body, QuestionStatus status, List<Answer> answers, Subject subject) {
         super(id, createdAt, createdBy, updatedAt, updatedBy, deleted);
         this.body = body;

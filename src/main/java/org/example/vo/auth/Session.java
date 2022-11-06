@@ -24,7 +24,7 @@ public class Session {
 
     @Getter
     @Setter
-    private static class SessionUser {
+    public static class SessionUser {
 
         private Long id;
         private String username;

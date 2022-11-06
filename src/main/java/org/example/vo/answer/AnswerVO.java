@@ -1,5 +1,6 @@
 package org.example.vo.answer;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.enums.AnswerStatus;
@@ -18,6 +19,8 @@ public class AnswerVO extends GenericVO {
     private String body;
     private AnswerStatus status;
 
+
+    @Builder(builderMethodName = "childBuilder")
     public AnswerVO(Long id, String body, AnswerStatus status) {
         super(id);
         this.body = body;

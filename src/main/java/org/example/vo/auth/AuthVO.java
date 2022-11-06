@@ -1,5 +1,6 @@
 package org.example.vo.auth;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +19,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+
 public class AuthVO extends GenericVO {
 
     private String username;
@@ -25,6 +27,7 @@ public class AuthVO extends GenericVO {
     private AuthRole role;
     private LocalDateTime createdAt;
 
+    @Builder(builderMethodName = "childBuilder")
     public AuthVO(Long id, String username, String email, AuthRole role, LocalDateTime createdAt) {
         super(id);
         this.username = username;

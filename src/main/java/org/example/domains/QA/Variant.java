@@ -1,10 +1,7 @@
 package org.example.domains.QA;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.domains.Auditable;
 import org.example.domains.auth.AuthUser;
 import org.example.enums.QuestionStatus;
@@ -21,13 +18,13 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "variants", schema = "test")
+@Table(name = "variants")
 @Getter
 @Setter
 
 public class Variant extends Auditable {
 
-    @OneToOne(targetEntity = AuthUser.class, cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = AuthUser.class, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     private AuthUser user;
 
@@ -38,12 +35,11 @@ public class Variant extends Auditable {
     @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
     private Boolean completed;
 
-    @ManyToMany(targetEntity = Question.class, cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Question.class, cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "variant_question",
 
             joinColumns =@JoinColumn(name = "varian_id"),
-            inverseJoinColumns =@JoinColumn(name = "question_id"),
-            schema ="test"
+            inverseJoinColumns =@JoinColumn(name = "question_id")
     )
     private List<Question> questionList;
 
@@ -54,13 +50,14 @@ public class Variant extends Auditable {
     private Integer numberOfQuestions;
 
 
-    public Variant(Long id, Timestamp createdAt, Long createdBy, Timestamp updatedAt, Long updatedBy, Boolean deleted, AuthUser user, QuestionStatus status, Boolean completed, List<Question> questionList, Integer numberOfRightAnswers, Integer numberOfQuestions) {
+    @Builder(builderMethodName = "childBuilder")
+    public Variant(Long id, Timestamp createdAt, Long createdBy, Timestamp updatedAt, Long updatedBy, Boolean deleted,
+                         AuthUser user, List<Question> questions, Integer numberOfRightAnswers, Integer numberOfQuestions) {
         super(id, createdAt, createdBy, updatedAt, updatedBy, deleted);
         this.user = user;
-        this.status = status;
-        this.completed = false;
-        this.questionList = questionList;
+        this.questionList = questions;
         this.numberOfRightAnswers = numberOfRightAnswers;
+        this.completed = false;
         this.numberOfQuestions = numberOfQuestions;
     }
 }

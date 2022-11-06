@@ -1,9 +1,6 @@
 package org.example.vo.question;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.enums.QuestionStatus;
 import org.example.vo.BaseVO;
 import org.example.vo.answer.AnswerCreateVO;
@@ -16,11 +13,12 @@ import java.util.List;
  * quiz-app-console/IntelliJ IDEA
  */
 
+
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-
 public class QuestionCreateVO implements BaseVO {
 
 

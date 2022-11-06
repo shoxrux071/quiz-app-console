@@ -1,14 +1,14 @@
-package org.example.dao;
+package org.example.dao.auth;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.example.configs.HibernateConfigurer;
+import org.example.dao.GenericDAO;
 import org.example.domains.auth.AuthUser;
+import org.example.enums.AuthRole;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
-import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -19,7 +19,7 @@ import java.util.Optional;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 
-public class AuthUserDAO extends GenericDAO<AuthUser, Long>{
+public class AuthUserDAO extends GenericDAO<AuthUser, Long> {
 
 
     private static AuthUserDAO instance;
@@ -44,7 +44,24 @@ public class AuthUserDAO extends GenericDAO<AuthUser, Long>{
         return result;
     }
 
-    public static void main(String[] args) {
+    public Optional<AuthUser> findByEmail(String email){
+        Session session = getSession();
+        session.beginTransaction();
+        Query<AuthUser> query = session.createQuery("select t from AuthUser t where lower(t.email)= lower(:email) and t.deleted=false", AuthUser.class);
+        query.setParameter("email", email);
+        Optional<AuthUser> result = Optional.ofNullable(query.getSingleResultOrNull());
+        session.close();
+        return result;
+    }
 
+    public List<AuthUser> findAll(AuthRole role){
+        Session session = getSession();
+        session.beginTransaction();
+        Query<AuthUser> query = session.createQuery("select t from AuthUser t where t.role=:role " +
+                "and t.deleted=false ", AuthUser.class);
+        query.setParameter("role", role);
+        List<AuthUser> userList = query.getResultList();
+        session.close();
+        return userList;
     }
 }

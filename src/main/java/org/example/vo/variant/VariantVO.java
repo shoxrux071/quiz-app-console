@@ -1,5 +1,6 @@
 package org.example.vo.variant;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.domains.auth.AuthUser;
@@ -24,6 +25,7 @@ public class VariantVO extends GenericVO {
     private Integer numberOfRightAnswers;
     private Timestamp createdAt;
 
+    @Builder(builderMethodName = "childBuilder")
     public VariantVO(Long id, AuthUser user, QuestionStatus status, List<QuestionVO> questionVOS, Integer numberOfRightAnswers, Timestamp createdAt) {
         super(id);
         this.user = user;

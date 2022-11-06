@@ -16,7 +16,6 @@ import org.example.vo.GenericVO;
 
 @Getter
 @Setter
-@Builder
 @ToString
 public class AuthUpdateVO extends GenericVO {
 
@@ -25,6 +24,8 @@ public class AuthUpdateVO extends GenericVO {
     private AuthRole role;
     private Status status;
 
+
+    @Builder(builderMethodName = "childBuilder")
     public AuthUpdateVO(Long id, String username, String email, AuthRole role, Status status) {
         super(id);
         this.username = username;
