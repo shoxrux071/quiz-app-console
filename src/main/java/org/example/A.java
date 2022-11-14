@@ -8,4 +8,6 @@ package org.example;
 public class A {
     private String color;
     private Integer a;
+
+    public static final Integer b = 5;
 }
