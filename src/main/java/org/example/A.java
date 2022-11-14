@@ -6,4 +6,6 @@ package org.example;
  * quiz-app-console/IntelliJ IDEA
  */
 public class A {
+    private String color;
+    private Integer a;
 }
